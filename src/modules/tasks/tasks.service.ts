@@ -41,11 +41,10 @@ export class TasksService {
 
   async findAll(token: string): Promise<Task[]> {
     const user_id = await this.decodeTokenToGetUserId(token);
-    console.log(user_id);
+
     const tasks = await this.taskRepository.find({
       where: { user: { id: user_id } },
     });
-    console.log(tasks);
 
     return tasks;
   }
