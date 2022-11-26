@@ -52,7 +52,7 @@ export class AuthService {
 
     const verifiedPassword = await bcrypt.compare(password, user.password);
 
-    if (!user || !verifiedPassword) {
+    if (!verifiedPassword) {
       throw new BadRequestException(AUTH_ERRORS.userDoesntExist);
     }
     const { password: passwordd, ...result } = user;
