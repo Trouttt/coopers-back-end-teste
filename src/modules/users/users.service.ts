@@ -1,6 +1,11 @@
 import * as bcrypt from 'bcrypt';
 
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  forwardRef,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,6 +13,7 @@ import { User } from './entities/user.entity';
 import { In, Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { USER_ERRORS } from 'src/shared/helpers/responses/errors/user-errors.helpers';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class UsersService {
@@ -15,6 +21,9 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+
+    @Inject(forwardRef(() => AuthService))
+    private readonly authService: AuthService,
 
     private readonly configService: ConfigService<
       {
@@ -28,6 +37,12 @@ export class UsersService {
     });
   }
 
+  async signIn(
+    authDto: CreateUserDto,
+    id: string,
+  ): Promise<{ access_token: string }> {
+    return this.authService.signIn(authDto, id);
+  }
   async create(createUserDto: CreateUserDto) {
     const userAlreadyExist = await this.findOneByUsername(
       createUserDto.username,
@@ -47,10 +62,16 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
+  async findOneById(id: string) {
+    return this.userRepository.findOne({
+      where: [{ id }, { username: id }],
+    });
+  }
+
   async findOneByUsername(username: string) {
     return this.userRepository.findOne({
       where: { username },
-      relations: ['account'],
+      withDeleted: true,
     });
   }
 }
