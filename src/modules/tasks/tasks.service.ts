@@ -34,8 +34,6 @@ export class TasksService {
 
     const task = this.taskRepository.create(createTaskDto);
 
-    console.log(task);
-
     task.user = user;
 
     return this.taskRepository.save(task);
