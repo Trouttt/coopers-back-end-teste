@@ -1,4 +1,4 @@
-Feature: Find all
+Feature: Find all tasks
 Como um usuário
 Quero poder buscar todas as tarefas referente ao usuário
 

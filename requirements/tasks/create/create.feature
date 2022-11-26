@@ -1,4 +1,4 @@
-Feature: Create
+Feature: Create task
 Como um usuário
 Quero poder cadastrar uma tarefa
 

@@ -2,7 +2,7 @@
 
 1. Sistema valida os dados
 2. Sistema faz uma requisição para a URL da api
-3. Sistema efetua o cadastro da task
+3. Sistema efetua o cadastro da tarefa
 
 ### Exceção - O usuário não exsite
 

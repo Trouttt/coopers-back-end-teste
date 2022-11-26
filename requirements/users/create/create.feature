@@ -1,4 +1,4 @@
-Feature: Create
+Feature: Create user
 Como um anônimo
 Quero poder cadastrar um usuário
 

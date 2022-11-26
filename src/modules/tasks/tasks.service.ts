@@ -81,7 +81,6 @@ export class TasksService {
     const user_id = await this.decodeTokenToGetUserId(token);
 
     const tasks = await this.findAllByTaskUserIdAndStatus(user_id, body.status);
-    console.log(tasks);
 
     if (!tasks) throw new NotFoundException(TASKS_ERRORS.taskDontExist);
 
