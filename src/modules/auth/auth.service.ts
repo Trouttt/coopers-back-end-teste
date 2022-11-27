@@ -24,7 +24,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) { }
 
-  async signIn(user: CreateUserDto, id: string) {
+  async signIn(user: CreateUserDto) {
     const verifyIfUserIsValid = await this.validateUser(
       user.username,
       user.password,
@@ -34,7 +34,7 @@ export class AuthService {
       const payload = {
         id: verifyIfUserIsValid.id,
         username: user.username,
-        sub: id,
+        sub: verifyIfUserIsValid.id,
       };
       return {
         access_token: this.jwtService.sign(payload),

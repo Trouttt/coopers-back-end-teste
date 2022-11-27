@@ -53,11 +53,8 @@ export class UsersController {
   })
   @ApiCreatedResponse({ description: 'Created', type: User })
   @Post('auth')
-  signIn(
-    @Body() body: CreateUserDto,
-    @Request() req,
-  ): Promise<{ access_token: string }> {
-    return this.usersService.signIn(body, req.body.id);
+  signIn(@Body() body: CreateUserDto): Promise<{ access_token: string }> {
+    return this.usersService.signIn(body);
   }
   //@UseGuards(JwtAuthGuard)
 }

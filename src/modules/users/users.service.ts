@@ -37,11 +37,8 @@ export class UsersService {
     });
   }
 
-  async signIn(
-    authDto: CreateUserDto,
-    id: string,
-  ): Promise<{ access_token: string }> {
-    return this.authService.signIn(authDto, id);
+  async signIn(authDto: CreateUserDto): Promise<{ access_token: string }> {
+    return this.authService.signIn(authDto);
   }
   async create(createUserDto: CreateUserDto) {
     const userAlreadyExist = await this.findOneByUsername(
