@@ -12,7 +12,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { In, Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
-import { USER_ERRORS } from 'src/shared/helpers/responses/errors/user-errors.helpers';
+import { USER_ERRORS } from '../../shared/helpers/responses/errors/user-errors.helpers';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable()

@@ -10,7 +10,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Task } from 'src/modules/tasks/entities/task.entity';
+import { Task } from '../../../modules/tasks/entities/task.entity';
 
 @Entity({ name: 'users' })
 export class User {

@@ -12,7 +12,7 @@ import { UsersService } from '../users/users.service';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from '../users/entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
-import { AUTH_ERRORS } from 'src/shared/helpers/responses/errors/auth-errors.helpers';
+import { AUTH_ERRORS } from '../../shared/helpers/responses/errors/auth-errors.helpers';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 
 @Injectable()
